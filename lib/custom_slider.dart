@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+class SliderGet {
+  static double sliderValue = 0;
+
+  void setSliderValue(value) {
+    sliderValue = value;
+  }
+
+  double getSliderValue() {
+    return sliderValue;
+  }
+}
+
 class CustomSlider extends StatefulWidget {
   const CustomSlider({super.key});
 
@@ -8,6 +20,7 @@ class CustomSlider extends StatefulWidget {
 }
 
 class _CustomSliderState extends State<CustomSlider> {
+  var slider = SliderGet();
   double _currentSliderValue = 18;
 
   @override
@@ -30,6 +43,7 @@ class _CustomSliderState extends State<CustomSlider> {
           onChanged: (double value) {
             setState(() {
               _currentSliderValue = value;
+              slider.setSliderValue(value);
             });
           },
         ),

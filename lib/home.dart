@@ -9,9 +9,9 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int age = 18;
-    bool toggle = false;
-    String time = "00:00 AM";
+    var toggle = ToggleGet();
+    var age = SliderGet();
+    var time = TimePickerGet();
     return Scaffold(
       body: Center(
         child: Column(
@@ -24,29 +24,29 @@ class Home extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            const Text(
-              "Select Your Age",
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                const CustomSlider(),
-                Padding(
-                  padding: const EdgeInsets.only(right: 20, left: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: const [
-                      Text("1"),
-                      Text("65+"),
-                    ],
-                  ),
-                ),
-              ],
-            ),
+            // const Text(
+            //   "Select Your Age",
+            //   style: TextStyle(
+            //     fontSize: 20,
+            //     fontWeight: FontWeight.bold,
+            //   ),
+            // ),
+            // Column(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: <Widget>[
+            //     const CustomSlider(),
+            //     Padding(
+            //       padding: const EdgeInsets.only(right: 20, left: 20),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //         children: const [
+            //           Text("1"),
+            //           Text("65+"),
+            //         ],
+            //       ),
+            //     ),
+            //   ],
+            // ),
             const CustomToggle(),
             const CustomTimePicker(),
             Padding(
@@ -58,13 +58,15 @@ class Home extends StatelessWidget {
                 child: const Text("Calculate"),
                 onPressed: () {
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Calculated(
-                                age: age,
-                                toggle: toggle,
-                                time: time,
-                              )));
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Calculated(
+                        age: age.getSliderValue(),
+                        toggle: toggle.getToggleValue(),
+                        time: time.getTimePicker(),
+                      ),
+                    ),
+                  );
                 },
               ),
             )

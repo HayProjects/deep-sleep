@@ -1,5 +1,17 @@
 import 'package:flutter/material.dart';
 
+class ToggleGet {
+  static bool toggleValue = false;
+
+  void setToggleValue(value) {
+    toggleValue = value;
+  }
+
+  bool getToggleValue() {
+    return toggleValue;
+  }
+}
+
 class CustomToggle extends StatefulWidget {
   const CustomToggle({super.key});
 
@@ -8,6 +20,7 @@ class CustomToggle extends StatefulWidget {
 }
 
 class _CustomToggleState extends State<CustomToggle> {
+  var toggle = ToggleGet();
   var isEnabled = false;
   var textColor = false;
 
@@ -54,6 +67,7 @@ class _CustomToggleState extends State<CustomToggle> {
                   onTap: () {
                     setState(() {
                       isEnabled = false;
+                      toggle.setToggleValue(isEnabled);
                     });
                   },
                   child: AnimatedDefaultTextStyle(
@@ -73,6 +87,7 @@ class _CustomToggleState extends State<CustomToggle> {
                   onTap: () {
                     setState(() {
                       isEnabled = true;
+                      toggle.setToggleValue(isEnabled);
                     });
                   },
                   child: AnimatedDefaultTextStyle(
